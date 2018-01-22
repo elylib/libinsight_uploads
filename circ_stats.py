@@ -20,6 +20,7 @@ def oclc_to_libinsight(item):
     oclc_indices = (4, 5, 6, 8, 9, 11, 13, 15, 12)
     base = [item[i] for i in oclc_indices]
     base.extend(break_up_call_number(base[-1]))
+    base[0] = base[0].replace('/', '-')
     return base
 
 if __name__ == '__main__':
@@ -30,5 +31,8 @@ if __name__ == '__main__':
         to_libinsight.writerow(output_fields)  # write new header
 
         for item in from_oclc:
-            to_libinsight.writerow(oclc_to_libinsight(item))
+            try:
+                to_libinsight.writerow(oclc_to_libinsight(item))
+            except IndexError:
+                pass
 

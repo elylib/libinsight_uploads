@@ -2,6 +2,7 @@ import argparse
 import csv
 import re
 
+# Some call numbers might have a plus sign in them for some reason,
 call_number_regex = re.compile(r'^(?:\+ )?(\D+)(\d+)')
 
 # The fields as they exist in LibInsight
